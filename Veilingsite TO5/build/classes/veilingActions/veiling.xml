@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+		<!DOCTYPE struts PUBLIC
+		        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+		        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="visitor" namespace="" extends="struts-default">
+	
+		<interceptors> 
+	   	 	<interceptor name="AuthenticationInterceptor" 
+	     	class="veilingInterceptors.AuthenticationInterceptor"></interceptor>
+	         <interceptor-stack name="newStack">
+	       	<interceptor-ref name="AuthenticationInterceptor"/>
+	 		 <interceptor-ref name="defaultStack" />
+	          </interceptor-stack>
+	 
+	    </interceptors>
+	
+		<action name="CreateAccount" class="veilingActions.visitor.CreateAccount">
+			<result name="success">/jsp/visitor/Login.jsp</result>
+			<result name="input">/jsp/visitor/Register.jsp</result>
+		</action>
+		<action name="ActionLogin" class="veilingActions.visitor.Login">
+			<result name="success">/index.jsp</result>
+			<result name="input">/jsp/visitor/Login.jsp</result>
+		</action>
+	</package>
+
+
+	<package name="admin" namespace="/admin" extends="struts-default">
+			<interceptors> 
+		    <interceptor name="AdminInterceptor" class="veilingInterceptors.AdminInterceptor"></interceptor>
+		    <interceptor name="AuthenticationInterceptor" 
+		     class="veilingInterceptors.AuthenticationInterceptor"></interceptor>
+		         <interceptor-stack name="newStack">
+		       <interceptor-ref name="AuthenticationInterceptor"/>
+		       <interceptor-ref name="AdminInterceptor"/>
+		  <interceptor-ref name="defaultStack" />
+		          </interceptor-stack>
+		 
+		    </interceptors>
+		    
+		    <global-results>
+			<result name="login" type="redirect">
+				/index.jsp
+			</result>
+			</global-results>
+			
+			<action name="blockUserForm" class="veilingActions.administrator.CollectNonBlockedUsers">
+				<result name="success">/jsp/admin/NonBlockedUsers.jsp</result>
+				<result name="input">/jsp/admin/NonBlockedUsers.jsp</result>
+			</action>
+			
+			<action name="UnblockUserForm" class="veilingActions.administrator.CollectBlockedUsers">
+				<result name="success">/jsp/admin/BlockedUsers.jsp</result>
+				<result name="input">/jsp/admin/BlockedUsers.jsp</result>
+			</action>
+			
+			<action name="AllUsersForm" class="veilingActions.administrator.CollectUsers">
+				<result name="success">/jsp/admin/AllUsers.jsp</result>
+			</action>
+			
+			<action name="Statistics" class="veilingActions.administrator.ShowStatistics">
+				<result name="success">/jsp/admin/Statistics.jsp</result>
+			</action>
+			
+			<action name="CreateSellerAccountForm">
+				<result>/jsp/admin/RegisterSeller.jsp</result>
+			</action>
+			
+			<action name="CreateSellerAccount" class="veilingActions.administrator.CreateSellerAccount">
+				<result name="success">/jsp/admin/RegisterSeller.jsp</result>
+				<result name="input">/jsp/admin/RegisterSeller.jsp</result>
+			</action>
+
+			<action name="BidAuction" class="veilingActions.administrator.ShowAuctionBids">
+				<result name="success">/jsp/admin/BidAuctions.jsp</result>
+			</action>
+
+		
+			<action name="blockUser" class="veilingActions.administrator.BlockUser">
+				<result name="success">/jsp/admin/NonBlockedUsers.jsp</result>
+				<result name="input">/jsp/admin/NonBlockedUsers.jsp</result>
+			</action>
+		
+			<action name="UnblockUser" class="veilingActions.administrator.UnblockUser">
+				<result name="success">/jsp/admin/BlockedUsers.jsp</result>
+				<result name="input">/jsp/admin/BlockedUsers.jsp</result>
+			</action>
+		
+			<action name="EditUserKoperForm" class="veilingActions.administrator.EditUserKoperForm">
+				<result name="success">/jsp/admin/EditKoper.jsp</result>
+			</action>
+			
+			<action name="EditUserVerkoperForm" class="veilingActions.administrator.EditUserVerkoperForm">
+				<result name="success">/jsp/admin/EditVerkoper.jsp</result>
+			</action>
+		
+			<action name="EditUserKoper" class="veilingActions.administrator.EditUserKoper">
+				<result name="success">/jsp/admin/EditKoper.jsp</result>
+				<result name="input">/jsp/admin/EditKoper.jsp</result>
+			</action>
+		
+			<action name="EditUserVerkoper" class="veilingActions.administrator.EditUserVerkoper">
+				<result name="success">/jsp/admin/EditVerkoper.jsp</result>
+				<result name="input">/jsp/admin/EditVerkoper.jsp</result>
+			</action>
+	</package>
+	
+	<package name="verkoper" namespace="/verkoper" extends="struts-default">
+		  <interceptors> 
+    	<interceptor name="VerkoperInterceptor" class="veilingInterceptors.VerkoperInterceptor"></interceptor>
+         <interceptor-stack name="newStack">
+         	<interceptor-ref name="VerkoperInterceptor"/>
+  		<interceptor-ref name="defaultStack" />
+          </interceptor-stack>
+ 
+   		 </interceptors>
+   		 
+   		 <global-results>
+			<result name="login" type="redirect">
+				/index.jsp
+			</result>
+		</global-results>
+	
+	    
+	    <action name="BidAuction" class="veilingActions.administrator.ShowAuctionBids">
+			<result name="success">/jsp/admin/BidAuctions.jsp</result>
+		</action>
+		
+		<action name="AddAuction" class="veilingActions.member.AddAuction">
+				<result name="success">/jsp/member/AddAuction.jsp</result>
+				<result name="input">/jsp/member/AddAuction.jsp</result>
+		</action>
+		
+		<action name="AddAuctionForm">
+				<result name="success">/jsp/member/AddAuction.jsp</result>
+		</action>
+    
+	</package>
+	
+	<package name="koper" namespace="/koper" extends="struts-default">
+		 <interceptors> 
+    	<interceptor name="KoperInterceptor" class="veilingInterceptors.KoperInterceptor"></interceptor>
+         <interceptor-stack name="newStack">
+         	<interceptor-ref name="KoperInterceptor"/>
+  		<interceptor-ref name="defaultStack" />
+          </interceptor-stack>
+ 
+   		 </interceptors>
+   		 
+   		 <global-results>
+			<result name="login" type="redirect">
+				/index.jsp
+			</result>
+		</global-results>
+	
+	
+		<action name="BiedMee" class="veilingActions.member.BidAuction">
+		<interceptor-ref name="newStack"/>
+		<result name="login">/index.jsp</result>
+			<result name="input">/jsp/veiling/Chosen.jsp</result>
+			<result name="success">/jsp/veiling/Chosen.jsp</result>
+		</action>
+		
+		<action name="AddCredits" class="veilingActions.member.AddCredits">
+			<result name="input">/jsp/member/AddCredits.jsp</result>
+			<result name="success">/jsp/member/AfterCredits.jsp</result>
+		</action>
+		
+		<action name="AddCreditsForm">
+			<result name="success">/jsp/member/AddCredits.jsp</result>
+		</action>
+		
+		<action name="ChosenAuction" class="veilingActions.member.ChosenAuction">
+			<result name="success">/jsp/veiling/Chosen.jsp</result>
+		</action>
+	
+		</package>
+
+
+	<package name="general" namespace="" extends="struts-default">
+		   <interceptors> 
+		   <interceptor name="AuthenticationInterceptor" 
+		    class="veilingInterceptors.AuthenticationInterceptor"></interceptor>
+		        <interceptor-stack name="newStack">
+		      <interceptor-ref name="AuthenticationInterceptor"/>
+		 <interceptor-ref name="defaultStack" />
+		         </interceptor-stack>
+		
+		   </interceptors>
+		   
+		    <global-results>
+			<result name="login" type="redirect">
+				/index.jsp
+			</result>
+		</global-results>
+		   
+		   <action name="logout" class="veilingActions.member.Logout">
+				<result name="success">/jsp/logout.jsp</result>
+		   </action>
+		   
+		   	<action name="auctionVakantie" class="veilingActions.member.ViewAuctionCategory">
+				<result name="success">/jsp/veiling/vakantie.jsp</result>
+			</action>
+			
+			<action name="auctionElectronica" class="veilingActions.member.ViewAuctionCategory">
+				<result name="success">/jsp/veiling/electronica.jsp</result>
+			</action>
+			
+			<action name="EditAccount" class="veilingActions.member.EditAccount">
+				<result name="input">/jsp/member/EditAccount.jsp</result>
+				<result name="success">/index.jsp</result>
+			</action>
+	
+    		<action name="bidsAuctionForm" class="veilingActions.member.CollectAuctions">
+			   <result name="success">/jsp/member/BidAuctionsForm.jsp</result>
+			   <result name="login">/index.jsp</result>
+		  	</action>
+
+			<action name="showaccount" class="veilingActions.member.ShowAccount">
+				<result name="success">/jsp/member/EditAccount.jsp</result>
+			</action>
+		
+			<action name="AllAuction" class="veilingActions.member.ViewAuction">
+				<result name="login">/index.jsp</result>
+				<result name="success">/jsp/veiling/AllAuctions.jsp</result>
+			</action>
+	</package>
+</struts>
