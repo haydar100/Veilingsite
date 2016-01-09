@@ -1,4 +1,0 @@
-- Interceptor werkt nog niet voor de packages visitor / member fix this plx
-- Verkoper aanpassen via admin aanpassen
-- http://www.williammalone.com/articles/html5-canvas-javascript-bar-graph/
-
