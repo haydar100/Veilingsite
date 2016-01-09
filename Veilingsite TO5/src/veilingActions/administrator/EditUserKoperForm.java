@@ -39,6 +39,7 @@ public class EditUserKoperForm extends ActionSupport implements SessionAware {
 		}
 		
 		email = gezocht.getEmail();
+		//test
 		woonplaats = gezocht.getWoonplaats();
 		straat = gezocht.getStraat();
 		huisnummer = gezocht.getHuisnummer();
